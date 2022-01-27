@@ -10,47 +10,47 @@ use Log;
 
 class LoginController extends Controller
 {
-  /*
-  |--------------------------------------------------------------------------
-  | Login Controller
-  |--------------------------------------------------------------------------
-  |
-  | This controller handles authenticating users for the application and
-  | redirecting them to your home screen. The controller uses a trait
-  | to conveniently provide its functionality to your applications.
-  |
-   */
+    /*
+    |--------------------------------------------------------------------------
+    | Login Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller handles authenticating users for the application and
+    | redirecting them to your home screen. The controller uses a trait
+    | to conveniently provide its functionality to your applications.
+    |
+    */
 
-  use AuthenticatesUsers;
+    use AuthenticatesUsers;
 
-  /**
-   * Where to redirect users after login.
-   *
-   * @var string
-   */
-  protected $redirectTo = '/post';
+    /**
+     * Where to redirect users after login.
+     *
+     * @var string
+     */
+    protected $redirectTo = '/post';
 
-  /**
-   * Create a new controller instance.
-   *
-   * @return void
-   */
-  public function __construct()
-  {
-    $this->middleware('guest')->except('logout');
-  }
-
-  public function login(Request $request)
-  {
-
-    if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-      // Authentication passed...
-      Log::info("Login succeeded");
-
-      return redirect()->intended('post');
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('guest')->except('logout');
     }
-    Log::info("Login failed");
-    return redirect()->intended('login')
-      ->with('loginError', 'User name or password is incorrect!');
-  }
+
+    public function login(Request $request)
+    {
+
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+        // Authentication passed...
+        Log::info("Login succeeded");
+
+        return redirect()->intended('post');
+        }
+        Log::info("Login failed");
+        return redirect()->intended('login')
+        ->with('loginError', 'User name or password is incorrect!');
+    }
 }

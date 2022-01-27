@@ -38,8 +38,7 @@ a:hover,
   background: #6c9ae6;
 }
 .footer {
-  position: relative;
-  top: 100%;
+  position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -56,6 +55,9 @@ a:hover,
 .row {
   margin-bottom: 20px;
 }
+.content-inner {
+  margin-bottom: 100px;
+}
 .ttl {
   background: #259d6d;
   padding: 10px;
@@ -64,12 +66,15 @@ a:hover,
   color: #fff;
   margin: 0 auto;
 }
+.form-container {
+  width: 70%;
+}
 .form-group {
   width: 760px;
   margin: 0 auto 20px;
 }
 label {
-  width: 30%;
+  width: 40%;
 }
 .form-control {
   width: 60%;
@@ -79,8 +84,8 @@ label {
   resize: vertical;
 }
 .image {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
 }
 .search {
   display: flex;

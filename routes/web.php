@@ -26,19 +26,19 @@ Route::get('/register', function () {
 
 Auth::routes();
 
-Route::resource('post', 'PostController');
-Route::post('post/confirm_post','PostController@confirm_post')->name('confirm_post');
-Route::post('post/{post}/edit_confirm','PostController@edit_confirm')->name('edit_confirm');
-
-Route::resource('user', 'User\UserController');
-Route::get('user/{user}/profile','User\UserController@profile')->name('profile'); 
-Route::post('user/register_confirm','User\UserController@register_confirm')->name('register_confirm');
-
-Route::get('user/{user}/change_password','User\UserController@change_password')->name('change_password');  
-Route::post('user/{user}/update_password','User\UserController@update_password')->name('update_password'); 
-
-Route::get('export', 'PostController@export')->name('export');
-Route::get('importExportView', 'PostController@fileImportExport')->name('importExportView');
-Route::post('import', 'PostController@import')->name('import');
-
-// Route::get('sendmail', 'SendMailController@sendMail');
+Route::group(['middleware' => 'auth'], function () {
+  Route::resource('post', 'PostController');
+  Route::post('post/confirm_post','PostController@confirm_post')->name('confirm_post');
+  Route::post('post/{post}/edit_confirm','PostController@edit_confirm')->name('edit_confirm');
+  
+  Route::resource('user', 'User\UserController');
+  Route::get('user/{user}/profile','User\UserController@profile')->name('profile'); 
+  Route::post('user/register_confirm','User\UserController@register_confirm')->name('register_confirm');
+  
+  Route::get('user/{user}/change_password','User\UserController@change_password')->name('change_password');  
+  Route::post('user/{user}/update_password','User\UserController@update_password')->name('update_password'); 
+  
+  Route::get('export', 'PostController@export')->name('export');
+  Route::get('importExportView', 'PostController@fileImportExport')->name('importExportView');
+  Route::post('import', 'PostController@import')->name('import');
+});

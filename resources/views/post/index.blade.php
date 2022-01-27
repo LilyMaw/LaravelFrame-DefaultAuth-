@@ -39,14 +39,14 @@
       <tr>
         <td><a href="{{ route('post.show',$value->id) }}">{{ $value->title }}</a></td>
         <td>{{ $value->description }}</td>
-        <td>{{ App\Models\User::find(1)->name }}</td>
+        <td>{{ App\Models\User::find($value->created_user_id)->name }}</td>
         <td>{{ App\Models\Post::find($value->id)->created_at->toDateString() }}</td>
         <td>
           <form action="{{ route('post.destroy',$value->id) }}" method="POST">     
             <a class="btn btn-primary" href="{{ route('post.edit',$value->id) }}">Edit</a>   
             {{ csrf_field() }}
             {{ method_field('DELETE') }}  
-            <button type="submit" class="btn btn-danger">Delete</button>
+            <button type="submit" onclick='return confirm(`Are you sure you want to delete "{{ $value->title }}" `)' class="btn btn-danger">Delete</button>
           </form>
         </td>
       </tr>

@@ -11,7 +11,7 @@
   </div>
   <form action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data">
     {{ csrf_field() }}
-    <div class="row">
+    <div class="row content-inner">
       <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group clearfix">
           <div class="clearfix">
@@ -85,7 +85,7 @@
           <div class="clearfix">
             <label for="profile" class="pull-left">Profile:</label>
             <input type="hidden" name="profile" value="{{ $user->profile }}" class="form-control pull-right">
-            <img src="/storage/images/{{ $user->profile }}" alt="profile_image" class="form-control pull-right image">
+            <img src="/storage/images/{{ $user->profile }}" alt="profile_image" class="form-control image">
           </div>
         </div>
       </div>

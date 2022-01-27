@@ -9,23 +9,23 @@
       </div>
     </div>
   </div>
-  @if ($message = Session::get('error'))
-  <div class="alert alert-danger">
-      <p>{{ $message }}</p>
-  </div>
-  @endif
   <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
     {{ csrf_field() }}
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group clearfix">
-          <label for="import_file" class="pull-left">CSV File</label>
-          <input type="file" name="import_file" class="form-control pull-right">
+          <div class="clearfix">
+            <label for="import_file" class="pull-left">CSV File</label>
+            <input type="file" name="import_file" class="form-control pull-right">
+          </div>
+          @if ($errors->has('import_file'))
+            <p class="text-danger pull-right">{{ $errors->first('import_file') }}</p>
+          @endif
         </div>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-12 text-center">
         <button type="submit" class="btn btn-primary">Upload</button>
-        <button type="reset" class="btn btn-secondary">Cancel</button>
+        <a href="{{ route('post.index') }}" class="btn btn-secondary">Cancel</a>
       </div>
     </div>
   </form>

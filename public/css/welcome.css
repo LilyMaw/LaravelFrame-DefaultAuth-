@@ -63,6 +63,7 @@ html, body {
   text-decoration: none;
   border-radius: 10px;
   border: 1px solid #fff;
+  transition: background 0.3s, color 0.4s;
 }
 
 .gray:hover {

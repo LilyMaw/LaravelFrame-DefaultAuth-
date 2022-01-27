@@ -20,8 +20,6 @@ class UserController extends Controller
      */
     public function __construct(UserServiceInterface $userInterface)
     {
-
-        $this->middleware('auth');
         $this->userInterface = $userInterface;
     }
 

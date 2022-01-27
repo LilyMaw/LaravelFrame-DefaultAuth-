@@ -5,6 +5,7 @@ namespace App\Dao\User;
 use App\Contracts\Dao\User\UserDaoInterface;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class UserDao implements UserDaoInterface
 {
@@ -43,6 +44,8 @@ class UserDao implements UserDaoInterface
     public function storeUser($request)
     {
         $user = new User($request->all());
+        $user->created_user_id = Auth::user()->id;
+        $user->updated_user_id = Auth::user()->id;
         $user->save();
     }
 
@@ -80,18 +83,4 @@ class UserDao implements UserDaoInterface
         $user->delete();
     }
 
-    // /**
-    //  * Update user's password
-    //  * 
-    //  * @param  request $request
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function updatePassword($request)
-    // {
-    //     if (!(Hash::check($request->get('current_password'), auth()->user()->password))) {
-    //         return back()->withErrors(['msg' => 'Current Password is wronged!']);
-    //     }
-
-    //     User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
-    // }
 }

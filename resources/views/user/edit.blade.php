@@ -13,7 +13,7 @@
   <form action="{{ route('user.update',$user->id) }}" method="POST" id="form" enctype="multipart/form-data">
     {{ csrf_field() }}
     {{ method_field('PATCH') }} 
-    <div class="row">
+    <div class="row content-inner">
       <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group clearfix">
           <div class="clearfix">
@@ -71,7 +71,7 @@
       <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group clearfix">
           <label for="old-profile" class="pull-left">Old Profile:</label>
-          <img src="{{ asset('storage/images/'.$user->profile)}}" alt="profile_image" class="form-control pull-right image">
+          <img src="{{ asset('storage/images/'.$user->profile)}}" alt="profile_image" class="form-control image">
         </div>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-12">

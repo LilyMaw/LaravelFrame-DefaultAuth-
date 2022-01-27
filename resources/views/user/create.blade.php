@@ -13,7 +13,7 @@
   <form action="{{ route('register_confirm') }}" method="POST" enctype="multipart/form-data">
     {{ csrf_field() }}
     
-    <div class="row">
+    <div class="row content-inner">
       <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group clearfix">
           <div class="clearfix">

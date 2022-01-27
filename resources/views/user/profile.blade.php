@@ -10,11 +10,11 @@
     </div>
   </div>
    
-  <div class="row">
+  <div class="row content-inner">
     <div class="pull-left">
       <img class="image" src="{{ asset('storage/images/'.$user->profile) }}" alt="profile_image">
     </div>
-    <div class="pull-right">
+    <div class="pull-right form-container">
       <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
           <label for="name">Name:</label>

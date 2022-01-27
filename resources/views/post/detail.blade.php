@@ -29,7 +29,7 @@
         @if($post->status == 1)
         Active
         @else
-        Non-Active
+        Inactive
         @endif
       </div>
     </div>
@@ -42,7 +42,7 @@
     <div class="col-xs-12 col-sm-12 col-md-12">
       <div class="form-group">
         <label for="title">Created User:</label>
-        {{ App\Models\User::find(1)->name }}
+        {{ App\Models\User::find($post->created_user_id)->name }}
       </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
@@ -54,7 +54,8 @@
     <div class="col-xs-12 col-sm-12 col-md-12">
       <div class="form-group">
         <label for="title">Updated User:</label>
-        {{ App\Models\User::find(1)->name }}
+        {{ App\Models\User::find($post->updated_user_id)->name }}
+        {{-- {{ $post->user()->updated_user_id->name }} --}}
       </div>
     </div>
   </div>

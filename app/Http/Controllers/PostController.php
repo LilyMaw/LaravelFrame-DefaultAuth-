@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Contracts\Services\Post\PostServiceInterface;
+
 class PostController extends Controller
 
 
@@ -18,7 +19,6 @@ class PostController extends Controller
      */
     public function __construct(PostServiceInterface $postInterface)
     {
-        $this->middleware('auth');
         $this->postInterface = $postInterface;
     }
 
@@ -194,30 +194,7 @@ class PostController extends Controller
      */
     public function export()
 	{
-		$postList = Post::get();
-        $filename = "post.csv";
-        $handle = fopen($filename, 'w+');
-        fputcsv($handle, ['Title', 'Description', 'Posted User', 'Posted Date']);
-    
-        foreach ($postList as $row) {
-            fputcsv($handle,  [
-                
-                $row->title, 
-                $row->description, 
-                $row->created_user,
-                date('Y/m/d', strtotime($row->created_at))
-            ]);
-        }
-        
-        fclose($handle);
-    
-        $headers = array(
-            'Content-Type' => 'text/csv',
-        );
-    
-        return response()
-          ->download($filename, $filename, $headers)
-          ->deleteFileAfterSend(true);
+        return $this->postInterface->downloadPost();
 	}
     
 }

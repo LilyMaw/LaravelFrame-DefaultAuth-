@@ -15,9 +15,9 @@ class Post extends Model
         'deleted_at'
     ];
 
-    // protected function user()
-    // {
-    //     return $this->belongsTo(User::class);
-    // }
+    protected function user()
+    {
+        return $this->belongsTo(User::class);
+    }
     
 }

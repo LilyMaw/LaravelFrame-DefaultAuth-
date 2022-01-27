@@ -30,13 +30,9 @@
         </div>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-          <label for="flexSwitchCheckChecked" class="col-md-4 col-form-label text-md-right form-check-label">Status</label>
-          <div class="col-md-6">
-            <div class="form-check form-switch">
-              <input class="form-check-input" name="status" type="checkbox" id="flexSwitchCheckChecked" value="{{ request('status')}}" />
-            </div>
-          </div>
+        <div class="form-group clearfix">
+          <label for="status" class="pull-left">Status</label>
+          <input type="checkbox" name="status" value="{{ request('status') }}"/>
         </div>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-12 text-center">

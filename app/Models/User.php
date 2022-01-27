@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
@@ -36,12 +37,17 @@ class User extends Authenticatable
         'deleted_at'
     ];
 
-  /**
-   * The attributes that should be hidden for arrays.
-   *
-   * @var array
-   */
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function post()
+    {
+        return $this->hasMany(Post::class);
+    }
 }

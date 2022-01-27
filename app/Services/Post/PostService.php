@@ -4,6 +4,8 @@ namespace App\Services\Post;
 
 use App\Contracts\Dao\Post\PostDaoInterface;
 use App\Contracts\Services\Post\PostServiceInterface;
+use App\Models\Post;
+use App\Models\User;
 
 class PostService implements PostServiceInterface
 {
@@ -77,4 +79,35 @@ class PostService implements PostServiceInterface
         return $this->postDao->importPost($request);
     }
 
+    /**
+     * To download post csv file
+     * @return File Download CSV file
+     */
+    public function downloadPost()
+    {
+        $postList = Post::get();
+        $filename = "post.csv";
+        $handle = fopen($filename, 'w+');
+        fputcsv($handle, ['Title', 'Description', 'Posted User', 'Posted Date']);
+    
+        foreach ($postList as $row) {
+            fputcsv($handle,  [
+                
+                $row->title, 
+                $row->description, 
+                User::find($row->created_user_id)->name,
+                date('Y/m/d', strtotime($row->created_at))
+            ]);
+        }
+        
+        fclose($handle);
+    
+        $headers = array(
+            'Content-Type' => 'text/csv',
+        );
+    
+        return response()
+          ->download($filename, $filename, $headers)
+          ->deleteFileAfterSend(true);
+    }
 }

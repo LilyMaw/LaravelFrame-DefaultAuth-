@@ -46,25 +46,26 @@
       @if(sizeof($userList) > 0)
         @foreach ($userList as $user)
           <tr>
-            <td>{{ $i++ }}</td>
-            <td><a href="{{ route('user.show',$user->id) }}">{{$user->name }}</a></td>
+            <td>{{ $user->id }}</td>
+            <td><a href="{{ route('user.show',$user->id) }}">{{ $user->name }}</a></td>
             <td>{{ $user->email }}</td>
-            <td>{{ App\Models\User::find(1)->name }}</td>
-            @if($user->type == 0) 
+            <td>{{ App\Models\User::find($user->created_user_id)->name }}</td>
+            <td>{{ $user->type }}</td>
+            {{-- @if($user->type == 0) 
             <td>Admin</td>
             @elseif($user->type == 1)
             <td>User</td>
-            @endif
+            @endif --}}
             <td>{{ $user->phone }}</td>
             <td>{{ $user->dob }}</td>
             <td>{{ $user->address }}</td>
-            <td>{{ $user->created_at->toDateString() }}</td>
-            <td>{{ $user->updated_at->toDateString() }}</td>
+            <td>{{date('Y/m/d', strtotime($user->created_at))}}</td>
+            <td>{{date('Y/m/d', strtotime($user->updated_at))}}</td>
             <td>
               <form action="{{ route('user.destroy',$user->id) }}" method="POST">       
                 {{ csrf_field() }}
                 {{ method_field('DELETE') }}   
-                <button type="submit" class="btn btn-danger">Delete</button>
+                <button type="submit" onclick='return confirm(`Are you sure you want to delete "{{ $user->name }}" `)' class="btn btn-danger">Delete</button>
               </form>
             </td>
           </tr>

@@ -40,4 +40,10 @@ interface PostServiceInterface
      */
     public function importPost($request);
 
+    /**
+     * To download post csv file
+     * @return File Download CSV file
+     */
+    public function downloadPost();
+
 }

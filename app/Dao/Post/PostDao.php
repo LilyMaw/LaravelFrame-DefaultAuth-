@@ -37,6 +37,8 @@ class PostDao implements PostDaoInterface
             'title' => $request->session()->get('title'),
             'description' => $request->session()->get('description'),
         ]);
+        $post->created_user_id = $request->user()->id;;
+        $post->updated_user_id = $request->user()->id;;
         $post->save();
         return $post;
     }
@@ -51,6 +53,12 @@ class PostDao implements PostDaoInterface
      */
     public function updatePost($request, $post)
     {
+        if ($request['status']) {
+            $post->status = '1';
+          } else {
+            $post->status = '0';
+          }
+        $post->updated_user_id = $request->user()->id;
         $post->update($request->session()->all());
     }
 
@@ -79,8 +87,10 @@ class PostDao implements PostDaoInterface
             foreach ($data as $key => $value) {   
                 $post = new Post([
                     'title' => $value[0],
-                    'description' => $value[1]
+                    'description' => $value[1],
                 ]);
+                $post->created_user_id = $request->user()->id;;
+                $post->updated_user_id = $request->user()->id;;
                 $post->save();
             }  
             if(!empty($insert)){  
